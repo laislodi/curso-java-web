@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html th:replace="~{fragments/layout :: layout (~{::body})}">
+<html th:fragment="layout (template)" >
 <head>
 <meta charset="UTF-8" />
 <title>Sistema de Cadastro</title>
 </head>
 <body>
-	<h1>Página de Cadastro de Clientes</h1>
+Menu:
+<div th:replace = "${template}" />
+footer
+
 </body>
 </html>
