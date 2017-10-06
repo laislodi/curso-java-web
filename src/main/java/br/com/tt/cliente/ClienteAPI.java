@@ -22,7 +22,7 @@ public class ClienteAPI {
 	@GetMapping("/{id}")
 	Cliente cliente(@PathVariable(name="id") Integer id) {
 		List<Cliente> clientes = service.consulta();
-		if (id - 1 < clientes.size()) {
+		if (id > clientes.size()) {
 			return new Cliente();
 		}
 		return clientes.get(id - 1);
