@@ -22,7 +22,7 @@
 					<tr th:each="c : ${_clientes}" >
 						<td th:text="${c.id}"></td>
 						<td th:text="${c.nome}"></td>
-						<td th:text="${c.cpf}" style=""></td>
+						<td th:text="${c.cpf}"  style=""></td>
 						<td th:text="${#dates.format(c.data,'dd / MMM / yyyy')}"></td>
 					</tr>
 				</tbody>
