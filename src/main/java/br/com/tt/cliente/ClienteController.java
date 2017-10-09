@@ -23,7 +23,7 @@ public class ClienteController {
 	@GetMapping
 	ModelAndView cliente(){
 		
-		ModelAndView mv = new ModelAndView("/cliente/index");
+		ModelAndView mv = new ModelAndView("cliente/index");
 		
 		// _clientes esta sendo chamado no index.html do cliente
 		mv.addObject("_clientes", service.consulta());
@@ -33,7 +33,7 @@ public class ClienteController {
 	
 	@GetMapping("/cadastro")
 	ModelAndView cadastro(Cliente cliente){
-		ModelAndView mv = new ModelAndView("/cliente/cadastro");
+		ModelAndView mv = new ModelAndView("cliente/cadastro");
 		if (cliente == null){
 			cliente = new Cliente();
 		}
