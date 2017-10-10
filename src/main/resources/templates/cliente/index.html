@@ -16,7 +16,7 @@
 				class="table table-sm table-striped table-hover table-bordered">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th><a th:href="">ID</a></th>
 						<th>NOME</th>
 						<th>CPF</th>
 						<th>DATA</th>
@@ -27,7 +27,7 @@
 					<tr th:each="c : ${_clientes}">
 						<td th:text="${c.id}"></td>
 						<td th:text="${c.nome}"></td>
-						<td th:text="${c.cpf}"></td>
+						<td th:text="${beans.cv.cpf('12345678901')}"></td>
 						<td th:text="${#dates.format(c.data,'dd / MMM / yyyy')}"></td>
 						<td>
 							<div class="btn-group pull-right">
