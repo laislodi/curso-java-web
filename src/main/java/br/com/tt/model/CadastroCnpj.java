@@ -3,7 +3,7 @@ package br.com.tt.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CadastroReceita {
+public class CadastroCnpj {
 	private String data_situacao;
 	private String nome;
 	private String efr;

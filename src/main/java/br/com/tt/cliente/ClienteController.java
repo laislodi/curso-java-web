@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.tt.exception.CursoJavaWebException;
+import br.com.tt.model.CadastroCnpj;
+
 @Controller
 @RequestMapping("cliente")
 public class ClienteController {
@@ -60,4 +63,20 @@ public class ClienteController {
 		service.excluir(id);
 		return cliente();
 	}
+	
+	@GetMapping("/consulta/cnpj")
+	ModelAndView telaConsultaReceita(){
+		ModelAndView mv = new ModelAndView("/cliente/consulta-cnpj");
+		mv.addObject("cadastroCnpj", new CadastroCnpj());
+		return mv;
+	}
+	
+	@PostMapping("/consulta/cnpj")
+	ModelAndView consultaReceita(CadastroCnpj cadastroCnpj) throws CursoJavaWebException{
+		Cliente cliente = new Cliente();
+		cadastroCnpj = service.consultaCnpj(cadastroCnpj.getCnpj());
+		cliente.setNome(cadastroCnpj.getFantasia());
+		return cadastro(cliente);
+	}
+	
 }

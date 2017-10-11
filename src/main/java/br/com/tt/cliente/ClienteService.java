@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import br.com.tt.model.CadastroReceita;
+import br.com.tt.exception.CursoJavaWebException;
+import br.com.tt.model.CadastroCnpj;
 import br.com.tt.util.HttpClient;
+import br.com.tt.util.JsonMap;
 
 // Regras de negocio
 @Service
@@ -33,20 +33,12 @@ public class ClienteService {
 		repository.delete(id);
 	}
 	
-	public CadastroReceita consulta(String cnpj) throws Exception{
-		ObjectMapper mapper = new ObjectMapper();
+	public CadastroCnpj consultaCnpj(String cnpj) throws CursoJavaWebException {
 		String receitaJson = HttpClient.get("https://www.receitaws.com.br/v1/cnpj/" + cnpj);
-		CadastroReceita receita = mapper.readValue(receitaJson, CadastroReceita.class);
-		System.out.println("Nome: " + receita.getNome());
-		System.out.println("Fantasia: " + receita.getFantasia());
-		System.out.println("Data de Abertura: " + receita.getAbertura());
-		System.out.println("Email: " + receita.getEmail());
-		System.out.println("Logradouro: "+ receita.getLogradouro());
-		System.out.println("Situação: " + receita.getSituacao());
-		return receita;
+		return JsonMap.jsonToObject(receitaJson, CadastroCnpj.class);
 	}
 	
 	public static void main(String[] args) throws Exception{
-		new ClienteService().consulta("00000000000191");
+		new ClienteService().consultaCnpj("00000000000191");
 	}
 }
